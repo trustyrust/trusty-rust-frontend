@@ -1,6 +1,6 @@
 <template>
   <router-link
-    to="/blog/setting-up-rust-in-vscode"
+    :to=to
     exact
     v-bind:class="{ dark: $q.dark.isActive }"
     class="blog-link"
@@ -11,6 +11,12 @@
 
 <script>
 export default {
+  props: {
+    to: {
+      type: String,
+      required: true,
+    },
+  },
   setup() {
     return {}
   },

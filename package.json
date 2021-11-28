@@ -1,8 +1,8 @@
 {
-  "name": "practical-rust-blog",
+  "name": "trusty-rust-blog",
   "version": "0.0.1",
-  "description": "A Quasar Framework app",
-  "productName": "Quasar App",
+  "description": "Blog for the Rust Language",
+  "productName": "Trusty Rust Blog",
   "author": "Trusty Rust <trustyrustblog@gmail.com>",
   "private": true,
   "scripts": {

@@ -5,12 +5,14 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/Index.vue') },
+      { path: '/about', component: () => import('pages/About.vue') },
     ]
   },
   {
     path: '/blog',
     component: () => import('layouts/MainLayout.vue'),
     children: [
+      { path: '', component: () => import('src/pages/Blog/BlogIndex.vue') },
       { path: 'getting-started', component: () => import('pages/Blog/GettingStarted.vue') },
       { path: 'setting-up-rust-in-vscode', component: () => import('pages/Blog/RustProject.vue') },
       { path: 'why-use-rust', component: () => import('pages/Blog/WhyRust.vue') },

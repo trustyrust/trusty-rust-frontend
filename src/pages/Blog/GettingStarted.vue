@@ -127,7 +127,7 @@ rustup default stable`"
         <div class="text-h4">Rust Resources</div>
         <div class="text-body1">
           Don't forget to see the next Blog Post for tips and tricks on how to setup Rust in vscode for debugging and fast compile times
-          here: <blog-link>Setting Up Rust in vscode</blog-link>
+          here: <blog-link to="/blog/setting-up-rust-in-vscode">Setting Up Rust in vscode</blog-link>
         </div>
         <div class="text-body1 q-pt-md">
           Below are some helpful resources to navigate the Language of Rust

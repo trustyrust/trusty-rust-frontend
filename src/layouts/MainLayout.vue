@@ -49,24 +49,17 @@
       <div class="full-width row justify-center q-px-md">
         <div class="full-width q-mt-lg">
           <q-list dark separator>
-            <q-item clickable v-ripple to="/" exact active-class="right-menu-item-active">
+            <q-item
+              v-for="(section, idx) in arySections"
+              :key="idx"
+              clickable
+              v-ripple
+              :to="section.path"
+              exact
+              active-class="right-menu-item-active"
+            >
               <q-item-section>
-                <q-item-label>Overview</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item clickable v-ripple to="/blog/fizzbuzz" exact active-class="right-menu-item-active">
-              <q-item-section>
-                <q-item-label>Validators</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item clickable v-ripple to="/transactions" exact active-class="right-menu-item-active">
-              <q-item-section>
-                <q-item-label>Transactions</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item clickable v-ripple to="/blocks" exact active-class="right-menu-item-active">
-              <q-item-section>
-                <q-item-label>Blocks</q-item-label>
+                <q-item-label>{{ section.name }}</q-item-label>
               </q-item-section>
             </q-item>
           </q-list>
@@ -89,7 +82,6 @@ const arySections = [
   { name: 'Home', path: '/' },
   { name: 'Blog', path: '/blog' },
   { name: 'About', path: '/about' },
-  { name: 'Contact', path: '/contact' },
 ]
 
 export default defineComponent({
