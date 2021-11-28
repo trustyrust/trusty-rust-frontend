@@ -1,0 +1,75 @@
+// app global css in SCSS form
+@font-face {
+  font-family: Ubuntu;
+  src: url(./fonts/ubuntu-v15-latin/ubuntu-v15-latin-regular.woff);
+}
+
+// for mobile
+.mobile-body .q-drawer {
+  margin-top: 60px;
+}
+.bg-right-menu {
+  // background-color: #000029;
+}
+.text-tab-underline-color {
+  color: #f66f00;
+}
+.bg-tab-underline-color {
+  background-color: #f66f00;
+}
+
+.header-tab > .q-tab__indicator {
+  //   color: aquamarine;
+  padding-bottom: 3px;
+}
+
+body {
+  font-family: Ubuntu;
+}
+
+.text-h2 {
+  font-weight: 600;
+  font-size: 1.9rem;
+  line-height: 2.4rem;
+}
+.text-h4 {
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+/* for block of numbers */
+.hljs-ln-numbers {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  text-align: center;
+  color: #ccc;
+  border-right: 1px solid #ccc;
+  vertical-align: top;
+  padding-right: 5px !important;
+
+  /* your custom style here */
+}
+
+/* for block of code */
+.hljs-ln-code {
+  padding-left: 10px !important;
+}
+
+// ul {
+//   //   list-style: none;
+//   list-style-type: none;
+//   padding-inline-start: 0;
+//   //   margin: 0;
+// }
+
+// // This will allow child ul elements to keep there bullet point
+// li ul {
+//   list-style-type: disc;
+//   padding-inline-start: 24px;
+// }
