@@ -1,10 +1,5 @@
 <template>
-  <router-link
-    :to=to
-    exact
-    v-bind:class="{ dark: $q.dark.isActive }"
-    class="blog-link"
-    active-class="blog-link-active"
+  <router-link :to="to" exact v-bind:class="{ dark: $q.dark.isActive }" class="blog-link" active-class="blog-link-active"
     ><slot></slot
   ></router-link>
 </template>
@@ -24,10 +19,10 @@ export default {
 </script>
 <style lang="scss" scoped>
 .blog-link {
-  color: black;
+  color: #25c2a0;
   font-weight: bold;
 }
-.dark.blog-link {
-  color: white;
-}
+// .dark.blog-link {
+//   color: #25c2a0;
+// }
 </style>

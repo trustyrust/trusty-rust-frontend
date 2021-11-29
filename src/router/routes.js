@@ -17,6 +17,7 @@ const routes = [
       { path: 'setting-up-rust-in-vscode', component: () => import('pages/Blog/RustProject.vue') },
       { path: 'why-use-rust', component: () => import('pages/Blog/WhyRust.vue') },
       { path: 'fizzbuzz', component: () => import('pages/Blog/FizzBuzz.vue') },
+      { path: 'wasm-pack', component: () => import('pages/Blog/WasmPack.vue') },
     ]
   },
 

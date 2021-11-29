@@ -1,6 +1,6 @@
 <template>
   <span @click="onUrl" class="url-link font-bold cursor-pointer text-center">
-    {{ caption || link }}
+    <slot>{{ caption || link }}</slot>
   </span>
 </template>
 
@@ -29,7 +29,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 .url-link {
-  font-weight: 700;
+  color: #25c2a0;
+  font-weight: bold;
   text-decoration: underline;
 }
 </style>

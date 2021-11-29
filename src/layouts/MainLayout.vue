@@ -12,7 +12,7 @@
             </template>
           </div>
           <div v-if="!isMobile" class="row">
-            <q-tabs indicator-color="tab-underline-color" v-model="tab" no-caps class="">
+            <q-tabs shrink indicator-color="tab-underline-color" v-model="tab" no-caps class="">
               <q-route-tab
                 v-for="(section, idx) in arySections"
                 :key="idx"

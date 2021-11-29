@@ -27,7 +27,10 @@ const aryEssentials = [
   { label: '', path: '/blog/getting-started' },
   { label: '', path: '/blog/setting-up-rust-in-vscode' },
 ]
-const aryBlogPosts = [{ label: '', path: '/blog/fizzbuzz' }]
+const aryBlogPosts = [
+  { label: 'FizzBuzz in Rust', path: '/blog/fizzbuzz' },
+  { label: '', path: '/blog/wasm-pack' },
+]
 export default {
   components: {
     BlogLink,

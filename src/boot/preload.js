@@ -8,6 +8,7 @@ import axios from 'axios'
 // import 'highlight.js/styles/arduino-light.css'
 import hljs from 'highlight.js/lib/core';
 import javascript from 'highlight.js/lib/languages/javascript';
+import json from 'highlight.js/lib/languages/json';
 import rust from 'highlight.js/lib/languages/rust';
 import ini from 'highlight.js/lib/languages/ini';
 import shell from 'highlight.js/lib/languages/shell';
@@ -26,6 +27,7 @@ export default boot(async ({ app, store, router }) => {
   hljs.registerLanguage('ini', ini);
   hljs.registerLanguage('rust', rust);
   hljs.registerLanguage('javascript', javascript);
+  hljs.registerLanguage('json', json);
   hljs.configure({ ignoreUnescapedHTML: true })
   // hljs.highlightAll()
 
