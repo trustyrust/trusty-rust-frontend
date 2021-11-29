@@ -19,13 +19,8 @@
                 class="header-tab"
                 :name="section.name"
                 :to="{ path: section.path }"
-                exact
                 :label="section.name"
               />
-              <!-- <q-route-tab class="header-tab" :to="{ path: '/' }" exact name="overview" label="Blog" />
-              <q-route-tab class="header-tab" :to="{ path: '/blog/fizzbuzz' }" name="validators" label="About" />
-              <q-route-tab class="header-tab" :to="{ path: '/blog/install-rust' }" name="transactions" label="Mailing List" />
-              <q-route-tab class="header-tab" :to="{ path: '/blocks' }" name="blocks" label="Announcements" /> -->
             </q-tabs>
           </div>
           <div class="row">
@@ -55,7 +50,6 @@
               clickable
               v-ripple
               :to="section.path"
-              exact
               active-class="right-menu-item-active"
             >
               <q-item-section>
