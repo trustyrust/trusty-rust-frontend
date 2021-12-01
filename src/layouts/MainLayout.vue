@@ -3,9 +3,9 @@
     <q-header class="header">
       <q-toolbar>
         <q-toolbar-title class="header full-width row no-wrap justify-between items-center">
-          <div class="row no-wrap items-center">
+          <div class="row no-wrap items-center" v-bind:class="{ 'q-ml-md': !isMobile }">
             <q-img src="~assets/rust_crab.png" :no-spinner="true" width="55px" height="35px" />
-            <div class="q-px-md">Practical<br />Rust</div>
+            <div class="q-px-md">Trusty<br />Rust</div>
             <template v-if="!isMobile && false">
               <q-separator vertical color="white" />
               <div class="q-px-md">Blog</div>
@@ -25,6 +25,7 @@
           </div>
           <div class="row">
             <q-toggle v-model="isDark" @click="toggleDarkMode" checked-icon="dark_mode" color="green" unchecked-icon="light_mode" />
+            <q-btn v-if="!isMobile" class="q-mx-md" color="deep-orange" rounded no-caps label="Sign Up" @click="onSignUp" />
           </div>
         </q-toolbar-title>
         <q-btn v-if="isMobile" flat round :icon="rightDrawerOpen ? 'close' : 'menu'" @click="toggleRightDrawer" />
@@ -71,6 +72,7 @@ import { defineComponent, ref } from 'vue'
 import { useStore } from 'vuex'
 import { useQuasar } from 'quasar'
 import useBreakpoints from 'src/boot/useBreakpoints'
+import SignUp from 'src/components/Auth/SignUp.vue'
 
 const arySections = [
   { name: 'Home', path: '/' },
@@ -95,7 +97,6 @@ export default defineComponent({
 
     // get status
     const txtSearch = ref('')
-    const leftDrawerOpen = ref(false)
 
     return {
       arySections,
@@ -110,6 +111,17 @@ export default defineComponent({
       },
       onSearch: () => {
         console.log(txtSearch.value)
+      },
+      onSignUp: () => {
+        $q.dialog({
+          component: SignUp,
+        })
+          .onOk(() => {
+            console.log('OK')
+          })
+          .onCancel(() => {
+            console.log('Cancel')
+          })
       },
       toggleDarkMode: () => {
         $q.dark.toggle()

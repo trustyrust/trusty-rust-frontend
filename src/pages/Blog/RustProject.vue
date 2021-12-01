@@ -112,6 +112,37 @@ $ touch .vscode/launch.json
           Now you should be ready for attaching the vscode debugger. First build your project with <text-code>cargo build</text-code> and
           then "Start Debugging" by setting your breakpoints and pressing <text-code>F5</text-code>
         </div>
+        <q-separator class="q-my-lg" />
+      </section>
+      <section>
+        <div class="text-h4">Formatting Code</div>
+        <div class="text-body1">
+          Something that often gets overlooked is Code Formatting. This small details in code format can make a big difference in
+          readability. Luckily vscode extension above has a build in Rust Formatter. It should be picked up by default but it is not, you
+          can set it manually in your <text-code>settings.json</text-code> file.
+          <ul>
+            <li>locally for project specific: <text-code>.vscode/settings.json</text-code></li>
+            <li>globally for all projects: <text-code>~/.config/Code/User/settings.json</text-code></li>
+          </ul>
+        </div>
+        <div class="text-body1">Add this to either file</div>
+        <highlightjs language="json" :autodetect="false" :code="txtSettingsJson" />
+        <div class="text-body1">
+          Now you should get nice formatted Rust code every time you press <text-code>Shift + Alt + F</text-code>
+        </div>
+        <div class="text-body1">
+          If you like to adjust the default formatting settings add <text-code>rustfmt.toml</text-code> file to your root project folder and
+          you can add configurations just like you would in a <text-code>.prettierrc.json</text-code>
+        </div>
+        <div class="text-body1">
+          All configurations can be found here:
+          <link-href to="https://github.com/rust-lang/rustfmt/blob/master/Configurations.md">rustfmt configurations</link-href>
+        </div>
+        <highlightjs language="shell" :autodetect="false" :code="`touch rustfmt.toml`" />
+        <div class="text-body1">
+          For Example to adjust the maximum width of each line, simply add to <text-code>rustfmt.toml</text-code>
+        </div>
+        <highlightjs language="shell" :autodetect="false" :code="`max_width = 200`" />
       </section>
     </div>
     <table-of-contents />
@@ -183,6 +214,9 @@ export default defineComponent({
     }
   ]
 }`,
+      txtSettingsJson: `"[rust]": {
+    "editor.defaultFormatter": "matklad.rust-analyzer",
+},`,
     }
   },
 })

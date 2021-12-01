@@ -12,19 +12,33 @@ import { createStore } from 'vuex'
  * with the Store instance.
  */
 
-const defaultState = () => {
+const defaultStateTheme = () => {
   return {
     isDarkTheme: true
+  }
+}
+const defaultStateUser = () => {
+  return {
+    userAuth: {
+      id: null,
+      role_id: null,
+      user_name: null,
+      user_email: null,
+      is_email_valid: false,
+      created_at: null,
+      jwt: null,
+    },
+    userInfo: {},
   }
 }
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({
     modules: {
-      store: {
-        state: defaultState(),
+      theme: {
+        state: defaultStateTheme(),
         mutations: {
           RESET_STATE: (state) => {
-            Object.assign(state, defaultState())
+            Object.assign(state, defaultStateTheme())
           },
           DARK_THEME: (state, payload) => {
             state.isDarkTheme = payload
@@ -43,7 +57,43 @@ export default store(function (/* { ssrContext } */) {
             return state.isDarkTheme
           },
         },
+      },
+
+
+      user: {
+        state: defaultStateUser(),
+        mutations: {
+          RESET_STATE_USER: (state) => {
+            Object.assign(state, defaultStateUser())
+          },
+          USER_INFO: (state, payload) => {
+            Object.assign(state.userInfo, payload)
+          },
+          USER_AUTH: (state, payload) => {
+            Object.assign(state.userAuth, payload)
+          },
+        },
+        actions: {
+          resetUser: ({ commit }) => {
+            commit('RESET_STATE_USER')
+          },
+          setUserInfo: (context, payload) => {
+            context.commit('USER_INFO', payload)
+          },
+          setUserAuth: (context, payload) => {
+            context.commit('USER_AUTH', payload)
+          },
+        },
+        getters: {
+          userInfo: (state, getters) => {
+            return state.userInfo
+          },
+          userAuth: (state, getters) => {
+            return state.userAuth
+          },
+        },
       }
+
     },
 
     // enable strict mode (adds overhead!)

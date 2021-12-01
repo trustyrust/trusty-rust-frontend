@@ -23,6 +23,7 @@ module.exports = configure(function (ctx) {
     // https://quasar.dev/quasar-cli/boot-files
     boot: [
       'preload',
+      'axios',
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
@@ -48,6 +49,9 @@ module.exports = configure(function (ctx) {
     build: {
       vueRouterMode: 'history', // available values: 'hash', 'history'
 
+      env: {
+        BASE_URL: 'http://127.0.0.1:8000',
+      },
       // transpile: false,
       // publicPath: '/',
 
@@ -95,7 +99,7 @@ module.exports = configure(function (ctx) {
       // directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: ['Dialog', 'Notify']
     },
 
     // animations: 'all', // --- includes all animations
@@ -206,7 +210,7 @@ module.exports = configure(function (ctx) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'practical-rust-blog'
+        appId: 'trusty-rust-blog'
       },
 
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain

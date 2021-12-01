@@ -1,5 +1,5 @@
 import { boot } from 'quasar/wrappers'
-import axios from 'axios'
+import zxcvbn from 'zxcvbn'
 
 
 // https://github.com/highlightjs/highlight.js/tree/main/src/styles
@@ -21,7 +21,6 @@ import highlightjsLineNumbers from 'highlightjs-line-numbers2.js'
 // good idea to move this instance creation inside of the
 // "export default () => {}" function below (which runs individually
 // for each client)
-const api = axios.create({ baseURL: 'https://api.example.com' })
 export default boot(async ({ app, store, router }) => {
   hljs.registerLanguage('shell', shell);
   hljs.registerLanguage('ini', ini);
@@ -57,19 +56,9 @@ export default boot(async ({ app, store, router }) => {
       }
     }
   )
-
-  // for use inside Vue files (Options API) through this.$axios and this.$api
-
-  app.config.globalProperties.$axios = axios
-  // ^ ^ ^ this will allow you to use this.$axios (for Vue Options API form)
-  //       so you won't necessarily have to import axios in each vue file
-
-  app.config.globalProperties.$api = api
-  // ^ ^ ^ this will allow you to use this.$api (for Vue Options API form)
-  //       so you can easily perform requests against your app's API
 })
 
-const addLineNumbersToCodeBlocks = (langs = []) => {
+export const addLineNumbersToCodeBlocks = (langs = []) => {
   if (langs.length === 0) {
     // lineNumber all blocks
     hljs.initLineNumbersOnLoad({ singleLine: true })
@@ -85,4 +74,49 @@ const addLineNumbersToCodeBlocks = (langs = []) => {
   }
 }
 
-export { api, addLineNumbersToCodeBlocks }
+
+export const isValidEmail = (email) => {
+  const val = email
+  if (!(val && val.length > 0)) {
+    return 'Please type something'
+  }
+  // check valid email
+  const reEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  if (!reEmail.test(val)) {
+    return 'Not a Valid Email'
+  }
+}
+
+export const getPassword = async (val, $q) => {
+  return new Promise((resolve, reject) => {
+    // check password strength
+    const attack = zxcvbn(val)
+    if (process.env.DEV) {
+      console.log(JSON.stringify(attack, null, 2))
+    }
+    if (attack.score < 3) {
+      $q.dialog({
+        // title:'Unlock Wallet',
+        seamless: false,
+        message: `Your Password is weak.</b><br /><br />Strong passwords avoid using dictionary words and include a combination of letters, numbers, and special charaters`,
+        html: true,
+        cancel: true,
+        persistent: true,
+        options: {
+          type: 'toggle',
+          model: [],
+          isValid: (model) => model.includes('isConfirm'),
+          items: [{ label: 'I Do Not Care, Use a Weak Password', value: 'isConfirm' }],
+        },
+      })
+        .onOk(() => {
+          resolve(val)
+        })
+        .onDismiss(() => {
+          reject({})
+        })
+    } else {
+      resolve(val)
+    }
+  })
+}

@@ -1,4 +1,4 @@
-# Quasar App (practical-rust-blog)
+# Quasar App (trusty-rust-blog)
 
 A Quasar Framework app
 
@@ -38,3 +38,4 @@ Server authentication
 https://getpublii.com/docs/highlight-your-code-syntax-with-prism-js.html
 https://auth0.com/blog/build-and-secure-a-simple-symfony-api-server-using-auth0/
 https://yew.rs/
+https://blog.rust-lang.org/
