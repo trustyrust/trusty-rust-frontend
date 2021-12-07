@@ -1,5 +1,6 @@
 import { store } from 'quasar/wrappers'
 import { createStore } from 'vuex'
+import VuexPersistence from 'vuex-persist'
 
 // import example from './module-example'
 
@@ -28,11 +29,17 @@ const defaultStateUser = () => {
       created_at: null,
       jwt: null,
     },
-    userInfo: {},
   }
 }
 export default store(function (/* { ssrContext } */) {
+  const keyStorage = 'vuex'
+  const vuexLocal = new VuexPersistence({
+    key: keyStorage,
+    storage: window.localStorage,
+  })
+
   const Store = createStore({
+    plugins: [vuexLocal.plugin],
     modules: {
       theme: {
         state: defaultStateTheme(),
@@ -66,9 +73,6 @@ export default store(function (/* { ssrContext } */) {
           RESET_STATE_USER: (state) => {
             Object.assign(state, defaultStateUser())
           },
-          USER_INFO: (state, payload) => {
-            Object.assign(state.userInfo, payload)
-          },
           USER_AUTH: (state, payload) => {
             Object.assign(state.userAuth, payload)
           },
@@ -77,19 +81,16 @@ export default store(function (/* { ssrContext } */) {
           resetUser: ({ commit }) => {
             commit('RESET_STATE_USER')
           },
-          setUserInfo: (context, payload) => {
-            context.commit('USER_INFO', payload)
-          },
           setUserAuth: (context, payload) => {
             context.commit('USER_AUTH', payload)
           },
         },
         getters: {
-          userInfo: (state, getters) => {
-            return state.userInfo
-          },
           userAuth: (state, getters) => {
             return state.userAuth
+          },
+          isLoggedIn: (state, getters) => {
+            return Boolean(state.userAuth.jwt?.length || 0)
           },
         },
       }

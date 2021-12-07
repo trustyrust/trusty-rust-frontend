@@ -25,14 +25,51 @@
           </div>
           <div class="row">
             <q-toggle v-model="isDark" @click="toggleDarkMode" checked-icon="dark_mode" color="green" unchecked-icon="light_mode" />
-            <q-btn v-if="!isMobile" class="q-mx-md" color="deep-orange" rounded no-caps label="Sign Up" @click="onSignUp" />
+            <template v-if="!isMobile">
+              <q-btn v-if="!isLoggedIn" class="q-mx-md" color="deep-orange" rounded no-caps label="Sign Up" @click="onSignUp" />
+              <q-btn v-else flat round :icon="rightDrawerMobile ? 'close' : 'menu'" @click="toggleMenu">
+                <q-menu>
+                  <div class="row no-wrap q-pa-md">
+                    <!-- <div class="column">
+                      <div class="text-h6 q-mb-md">Settings</div>
+                      <q-toggle v-model="mobileData" label="Receive Notifications" />
+                      <q-toggle v-model="bluetooth" label="Bluetooth" />
+                    </div>
+
+                    <q-separator vertical inset class="q-mx-lg" /> -->
+
+                    <div class="column items-center">
+                      <div class="text-subtitle1 q-mt-md">{{ userAuth.user_name }}</div>
+                      <div class="text-subtitle1 q-mb-xs">{{ userAuth.user_email }}</div>
+                      <q-btn color="warning" rounded outline @click="onLogout" label="Logout" push size="sm" v-close-popup />
+                    </div>
+                  </div>
+                </q-menu>
+              </q-btn>
+            </template>
           </div>
         </q-toolbar-title>
-        <q-btn v-if="isMobile" flat round :icon="rightDrawerOpen ? 'close' : 'menu'" @click="toggleRightDrawer" />
+        <q-btn v-if="isMobile" flat round :icon="rightDrawerMobile ? 'close' : 'menu'" @click="toggleRightDrawer" />
       </q-toolbar>
     </q-header>
+    <!-- <q-drawer v-model="rightDrawerDesktop" side="right" overlay behavior="desktop" elevated>
+      <q-list separator>
+        <q-item clickable v-ripple>
+          <q-item-section avatar>
+            <q-icon color="primary" name="person" />
+          </q-item-section>
+
+          <q-item-section>Profile</q-item-section>
+        </q-item>
+        <q-item :manual-focus="true" :clickable="false">
+          <q-item-section>
+            <q-btn outline rounded color="warning" label="logout" @click="onLogout" />
+          </q-item-section>
+        </q-item>
+      </q-list>
+    </q-drawer> -->
     <q-drawer
-      v-model="rightDrawerOpen"
+      v-model="rightDrawerMobile"
       side="right"
       overlay
       behavior="mobile"
@@ -68,11 +105,11 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
+import { defineComponent, computed, ref } from 'vue'
 import { useStore } from 'vuex'
 import { useQuasar } from 'quasar'
 import useBreakpoints from 'src/boot/useBreakpoints'
-import SignUp from 'src/components/Auth/SignUp.vue'
+import SignUp from 'src/components/Auth/AuthDialog.vue'
 
 const arySections = [
   { name: 'Home', path: '/' },
@@ -90,7 +127,8 @@ export default defineComponent({
     const store = useStore()
     const { width, isMobile } = useBreakpoints()
 
-    const rightDrawerOpen = ref(false)
+    const rightDrawerMobile = ref(false)
+    const rightDrawerDesktop = ref(false)
 
     $q.dark.set(store.getters.isDarkTheme)
     const isDark = ref(store.getters.isDarkTheme)
@@ -105,12 +143,23 @@ export default defineComponent({
       isDark,
       width,
       isMobile,
-      rightDrawerOpen,
+      rightDrawerMobile,
+      rightDrawerDesktop,
+      userAuth: computed(() => store.getters.userAuth),
+      isLoggedIn: computed(() => store.getters.isLoggedIn),
       toggleRightDrawer() {
-        rightDrawerOpen.value = !rightDrawerOpen.value
+        rightDrawerMobile.value = !rightDrawerMobile.value
+      },
+      toggleMenu() {
+        rightDrawerDesktop.value = !rightDrawerDesktop.value
       },
       onSearch: () => {
         console.log(txtSearch.value)
+      },
+      onLogout: async () => {
+        // destroy the JWT token
+        await store.dispatch('resetUser')
+        rightDrawerDesktop.value = false
       },
       onSignUp: () => {
         $q.dialog({

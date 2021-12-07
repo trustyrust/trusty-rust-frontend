@@ -6,6 +6,7 @@ const routes = [
     children: [
       { path: '', component: () => import('pages/Index.vue') },
       { path: '/about', component: () => import('pages/About.vue') },
+      { path: '/password_forgot/:hmac_code', component: () => import('pages/PasswordForgot.vue') },
     ]
   },
   {

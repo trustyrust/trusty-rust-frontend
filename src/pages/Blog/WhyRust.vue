@@ -76,7 +76,6 @@
             </li>
           </ul>
         </div>
-        <q-separator class="q-my-lg" />
       </section>
     </div>
     <table-of-contents />

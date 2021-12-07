@@ -53,6 +53,10 @@ cargo --version`"
             />
             for help.
           </div>
+          <div class="text-body2">
+            Usually you can fix by adding the following into your <text-code>.zshrc</text-code> or <text-code>.bashrc</text-code>
+          </div>
+          <highlightjs language="shell" :autodetect="false" :code="txtShellPath" />
         </div>
         <q-separator class="q-my-lg" />
       </section>
@@ -186,7 +190,9 @@ export default defineComponent({
     const router = useRouter()
 
     onMounted(() => {})
-    return {}
+    return {
+      txtShellPath: `export PATH="$HOME/.cargo/bin:$PATH"`,
+    }
   },
 })
 </script>

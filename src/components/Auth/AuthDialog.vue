@@ -28,7 +28,7 @@
             <q-input
               filled
               v-model="loginEmail"
-              label="Email"
+              label="Email or Username"
               lazy-rules
               :rules="[(val) => (val && val.length > 0) || 'Please type something']"
               autofocus
@@ -162,20 +162,24 @@ export default {
       onLogin: async () => {
         try {
           isRequesting.value = true
+          const is_email = !isValidEmail(loginEmail.value)
 
           const jUserInfo = await api({
             method: 'POST',
             url: '/api/auth/login',
             data: {
-              email: loginEmail.value,
+              email: is_email ? loginEmail.value : undefined,
+              username: !is_email ? loginEmail.value : undefined,
               pass: loginPassword.value,
             },
           })
 
           const userInfo = await promisify(jsend.forward)(jUserInfo)
-          store.dispatch('setUserAuth', userInfo)
+          await store.dispatch('setUserAuth', userInfo)
 
-          console.log('userInfo', userInfo)
+          if (process.env.DEV) {
+            console.log('userInfo', userInfo)
+          }
           context.emit('hide', {})
         } catch (error) {
           $q.notify({ type: 'negative', message: error.message })
@@ -204,14 +208,7 @@ export default {
             // context.emit('hide', {})
             onDialogOK()
           } catch (error) {
-            if (error.message.indexOf('duplicate')) {
-              $q.notify({
-                type: 'negative',
-                message: 'Already Registered with this Email. Use Forgot Password link to reset your password',
-              })
-            } else {
-              $q.notify({ type: 'negative', message: error.message })
-            }
+            $q.notify({ type: 'negative', message: error.message })
           } finally {
             isRequesting.value = false
           }
@@ -220,7 +217,36 @@ export default {
         }
       },
       onForgotPassword: () => {
-        console.log('onForgotPassword')
+        try {
+          $q.dialog({
+            seamless: false,
+            message: `Enter your email and instructions will be sent to reset your password`,
+            prompt: {
+              isValid: (val) => !isValidEmail(val),
+              type: 'text',
+            },
+            cancel: true,
+            persistent: true,
+          })
+            .onOk(async (email) => {
+              console.log('email', email)
+              // request new password
+              // dont need to await
+              api({
+                method: 'POST',
+                url: '/api/auth/password_forgot_email',
+                data: {
+                  email,
+                },
+              })
+              onDialogCancel()
+            })
+            .onDismiss(() => {})
+        } catch (error) {
+          $q.notify({ type: 'negative', message: error.message })
+        } finally {
+          isRequesting.value = false
+        }
       },
     }
   },

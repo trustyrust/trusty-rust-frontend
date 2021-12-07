@@ -50,7 +50,7 @@ module.exports = configure(function (ctx) {
       vueRouterMode: 'history', // available values: 'hash', 'history'
 
       env: {
-        BASE_URL: 'http://127.0.0.1:8000',
+        BASE_URL: ctx.dev ? 'http://127.0.0.1:8000' : 'https://trustyrust.com',
       },
       // transpile: false,
       // publicPath: '/',
