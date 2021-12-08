@@ -1,17 +1,7 @@
 <template>
   <q-page padding class="full-width row no-wrap">
     <div class="col">
-      <section>
-        <div class="text-h2">Solving FizzBuzz in Rust</div>
-        <div class="text-body1">
-          In this post we will go through all the <text-code>possible</text-code> ways to solve the infamous FizzBuzz interview question in
-          Rust. Rust is an compiled language like C or Go but unlike most other languages Rust has a lot of unique ways of expressing code.
-          The purpose of this tutorial is not merely to solve the FizzBuzz question, but also to learn the different ways to solve using
-          Rust's unique style of code construction.
-        </div>
-        <q-separator class="q-my-lg" />
-        <highlightjs language="rust" :autodetect="false" :code="codeEx1" />
-      </section>
+
     </div>
 
     <!-- https://rustwasm.github.io/docs/wasm-pack/prerequisites/non-rustup-setups.html
@@ -40,7 +30,7 @@ When a parameter is not important, it can be omitted, or you can choose unknown 
 Finally, the ABI option is something that will pick default CPU/FPU, define the specific behaviour of your code (PCS, extensions), and also choose the correct library calls, etc. -->
 
     <!-- content -->
-    <table-of-contents />
+    <!-- <table-of-contents /> -->
   </q-page>
 </template>
 
@@ -54,9 +44,6 @@ import { addLineNumbersToCodeBlocks } from 'src/boot/preload'
 
 export default {
   components: {
-    TextCode,
-    TableOfContents,
-    highlightjs,
   },
   setup() {
     onMounted(() => {

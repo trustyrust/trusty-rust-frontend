@@ -24,12 +24,11 @@
 </template>
 
 <script>
-import { onMounted, ref, getCurrentInstance, computed } from 'vue'
+import { onMounted, ref, computed } from 'vue'
 import { useStore } from 'vuex'
 
 export default {
   setup() {
-    const app = getCurrentInstance()
     const store = useStore()
 
     const aryContents = ref([])
@@ -51,6 +50,7 @@ export default {
     })
 
     return {
+      aryContents,
       isMobile: computed(() => store.getters.useBreakpoints.isMobile),
       idxPos,
       onTableOfContentsLink: (link) => {
