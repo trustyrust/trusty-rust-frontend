@@ -25,14 +25,15 @@
 </template>
 
 <script>
+import { computed } from 'vue'
 import { openURL } from 'quasar'
-import { useBreakpoints } from 'src/boot/useBreakpoints'
+import { useStore } from 'vuex'
 
 export default {
   setup() {
-    const { width, isMobile } = useBreakpoints()
+    const store = useStore()
     return {
-      isMobile,
+      isMobile: computed(() => store.getters.useBreakpoints.isMobile),
       onUrl: (u) => {
         openURL(u)
       },

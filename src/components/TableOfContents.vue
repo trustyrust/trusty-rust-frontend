@@ -25,12 +25,12 @@
 
 <script>
 import { onMounted, ref, getCurrentInstance, computed } from 'vue'
-import { useBreakpoints } from 'src/boot/useBreakpoints'
+import { useStore } from 'vuex'
 
 export default {
   setup() {
     const app = getCurrentInstance()
-    const { isMobile } = useBreakpoints()
+    const store = useStore()
 
     const aryContents = ref([])
     const idxPos = ref(0)
@@ -51,8 +51,7 @@ export default {
     })
 
     return {
-      isMobile,
-      aryContents,
+      isMobile: computed(() => store.getters.useBreakpoints.isMobile),
       idxPos,
       onTableOfContentsLink: (link) => {
         window.scrollTo({ top: link.parentNode.offsetTop, behavior: 'smooth' })

@@ -2,17 +2,37 @@
   <router-view />
 </template>
 <script>
-import { defineComponent, onBeforeMount, onMounted } from 'vue'
+import { defineComponent, ref, onBeforeMount, onMounted, onUnmounted, computed } from 'vue'
 import { useStore } from 'vuex'
-import { highlightjs, hljs } from 'src/boot/preload'
 
 export default defineComponent({
   name: 'App',
   setup() {
     const store = useStore()
+    const onWidthChange = () => {
+      // set the breakpoints for responsive design
+      const windowWidth = window.innerWidth
+
+      const isMobile = windowWidth < 991
+      const breakpoint = (() => {
+        if (windowWidth >= 1400) return 'xxl'
+        if (windowWidth >= 1200) return 'xl'
+        if (windowWidth >= 992) return 'lg'
+        if (windowWidth >= 768) return 'md'
+        if (windowWidth >= 576) return 'sm'
+        return 'xs'
+      })()
+      const width = windowWidth
+      store.dispatch('setBreakpoints', { width, isMobile, breakpoint })
+    }
+    onMounted(() => window.addEventListener('resize', onWidthChange))
+    onUnmounted(() => window.removeEventListener('resize', onWidthChange))
 
     onBeforeMount(() => {
-      // set theme for load
+      // load screen width
+      onWidthChange()
+
+      // load theme for highlightjs
       const styleLight = document.getElementById('hljs-light')
       const styleDark = document.getElementById('hljs-dark')
 

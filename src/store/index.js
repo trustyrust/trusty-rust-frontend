@@ -21,6 +21,9 @@ const defaultStateTheme = () => {
     isDarkTheme: true
   }
 }
+const defaultStateBreakpoint = () => {
+  return { width: 1200, isMobile: false, breakpoint: 'xl' }
+}
 const defaultStateUser = () => {
   return {
     userAuth: {
@@ -96,7 +99,24 @@ export default store(function ({ ssrContext }) {
           },
         },
       },
-
+      breakpoint: {
+        state: defaultStateBreakpoint(),
+        mutations: {
+          BREAKPOINTS: (state, payload) => {
+            Object.assign(state, payload)
+          },
+        },
+        actions: {
+          setBreakpoints: ({ commit }, payload) => {
+            commit('BREAKPOINTS', payload)
+          },
+        },
+        getters: {
+          useBreakpoints: (state) => {
+            return state
+          },
+        },
+      },
 
       user: {
         state: defaultStateUser(),

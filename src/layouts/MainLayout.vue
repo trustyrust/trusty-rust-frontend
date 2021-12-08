@@ -108,7 +108,6 @@
 import { defineComponent, computed, ref } from 'vue'
 import { useStore } from 'vuex'
 import { useQuasar } from 'quasar'
-import { useBreakpoints } from 'src/boot/useBreakpoints'
 import SignUp from 'src/components/Auth/AuthDialog.vue'
 
 const arySections = [
@@ -123,7 +122,6 @@ export default defineComponent({
   setup() {
     const $q = useQuasar()
     const store = useStore()
-    const { width, isMobile } = useBreakpoints()
 
     const rightDrawerMobile = ref(false)
     const rightDrawerDesktop = ref(false)
@@ -139,8 +137,8 @@ export default defineComponent({
       tab: ref(arySections[0].name),
       txtSearch,
       isDark,
-      width,
-      isMobile,
+      width: computed(() => store.getters.useBreakpoints.width),
+      isMobile: computed(() => store.getters.useBreakpoints.isMobile),
       rightDrawerMobile,
       rightDrawerDesktop,
       userAuth: computed(() => store.getters.userAuth),
