@@ -1,15 +1,9 @@
 <template>
-  <span v-bind:class="{ dark: $q.dark.isActive }">{{ text }}<slot></slot></span>
+  <span v-bind:class="{ dark: $q.dark.isActive }"><slot></slot></span>
 </template>
 
 <script>
 export default {
-  props: {
-    text: {
-      type: String,
-      required: false,
-    },
-  },
   setup() {
     return {}
   },

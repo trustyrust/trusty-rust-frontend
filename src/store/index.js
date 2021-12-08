@@ -1,6 +1,9 @@
 import { store } from 'quasar/wrappers'
 import { createStore } from 'vuex'
-import VuexPersistence from 'vuex-persist'
+// import VuexPersistence from 'vuex-persist'
+import createPersistedState from "vuex-persistedstate";
+import Cookies from 'js-cookie';
+import cookie from 'cookie';
 
 // import example from './module-example'
 
@@ -31,15 +34,43 @@ const defaultStateUser = () => {
     },
   }
 }
-export default store(function (/* { ssrContext } */) {
+
+const ssrLocalStorage = {
+  setItem: (key, value) => {
+    process.env.SERVER ? void 0 : window.localStorage.setItem(key, value)
+  },
+  getItem: (key) => {
+    return process.env.SERVER ? void 0 : window.localStorage.getItem(key)
+  },
+  removeItem: (key) => {
+    process.env.SERVER ? void 0 : window.localStorage.removeItem(key)
+  },
+  clear: () => {
+    process.env.SERVER ? void 0 : window.localStorage.clear()
+  }
+}
+
+export default store(function ({ ssrContext }) {
   const keyStorage = 'vuex'
-  const vuexLocal = new VuexPersistence({
+  const persistedState = createPersistedState({
     key: keyStorage,
-    storage: window.localStorage,
+    storage: {
+      getItem: (key) => {
+        if (process.env.SERVER) {
+          const parsedCookies = cookie.parse(ssrContext.req.headers.cookie ?? '');
+          return parsedCookies[key];
+        } else {
+          return Cookies.get(key);
+        }
+      },
+      // Please see https://github.com/js-cookie/js-cookie#json, on how to handle JSON.
+      setItem: (key, value) => Cookies.set(key, value, { expires: 365 * 10, secure: !process.env.DEV }),
+      removeItem: key => Cookies.remove(key),
+    }
   })
 
   const Store = createStore({
-    plugins: [vuexLocal.plugin],
+    plugins: [persistedState],
     modules: {
       theme: {
         state: defaultStateTheme(),

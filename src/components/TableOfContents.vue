@@ -25,7 +25,7 @@
 
 <script>
 import { onMounted, ref, getCurrentInstance, computed } from 'vue'
-import useBreakpoints from 'src/boot/useBreakpoints'
+import { useBreakpoints } from 'src/boot/useBreakpoints'
 
 export default {
   setup() {

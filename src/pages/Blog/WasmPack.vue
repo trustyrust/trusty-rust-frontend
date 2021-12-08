@@ -1,6 +1,20 @@
 <template>
-  <q-page padding>
-<!-- https://rustwasm.github.io/docs/wasm-pack/prerequisites/non-rustup-setups.html
+  <q-page padding class="full-width row no-wrap">
+    <div class="col">
+      <section>
+        <div class="text-h2">Solving FizzBuzz in Rust</div>
+        <div class="text-body1">
+          In this post we will go through all the <text-code>possible</text-code> ways to solve the infamous FizzBuzz interview question in
+          Rust. Rust is an compiled language like C or Go but unlike most other languages Rust has a lot of unique ways of expressing code.
+          The purpose of this tutorial is not merely to solve the FizzBuzz question, but also to learn the different ways to solve using
+          Rust's unique style of code construction.
+        </div>
+        <q-separator class="q-my-lg" />
+        <highlightjs language="rust" :autodetect="false" :code="codeEx1" />
+      </section>
+    </div>
+
+    <!-- https://rustwasm.github.io/docs/wasm-pack/prerequisites/non-rustup-setups.html
 https://depth-first.com/articles/2020/06/29/compiling-rust-to-webassembly-a-simple-example/
 
 
@@ -26,11 +40,54 @@ When a parameter is not important, it can be omitted, or you can choose unknown 
 Finally, the ABI option is something that will pick default CPU/FPU, define the specific behaviour of your code (PCS, extensions), and also choose the correct library calls, etc. -->
 
     <!-- content -->
+    <table-of-contents />
   </q-page>
 </template>
 
 <script>
+import { onMounted } from 'vue'
+import TextCode from 'src/components/text-code.vue'
+import TableOfContents from 'src/components/TableOfContents.vue'
+import LinkHref from 'src/components/LinkHref.vue'
+import highlightjs from 'src/components/Highlightjs.vue'
+import { addLineNumbersToCodeBlocks } from 'src/boot/preload'
+
 export default {
-  // name: 'PageName',
+  components: {
+    TextCode,
+    TableOfContents,
+    highlightjs,
+  },
+  setup() {
+    onMounted(() => {
+      // This highlights all code blocks
+      addLineNumbersToCodeBlocks(['rust'])
+    })
+    return {
+      codeEx1: `pub fn fizz_buzz(i: u32) -> String {
+    let mut str = String::new();
+
+    if i % 3 == 0 {
+        str += "fizz";
+    }
+    if i % 5 == 0 {
+        str += "buzz";
+    }
+    if str == "" {
+        str = i.to_string();
+    }
+
+    str.to_string()
+}
+
+fn main() {
+    for i in 1..=20 {
+        let result = fizz_buzz(i);
+        println!("fizzbuzz for number {} is {}", i, result);
+    }
+}
+`,
+    }
+  },
 }
 </script>

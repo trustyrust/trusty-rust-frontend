@@ -108,7 +108,7 @@
 import { defineComponent, computed, ref } from 'vue'
 import { useStore } from 'vuex'
 import { useQuasar } from 'quasar'
-import useBreakpoints from 'src/boot/useBreakpoints'
+import { useBreakpoints } from 'src/boot/useBreakpoints'
 import SignUp from 'src/components/Auth/AuthDialog.vue'
 
 const arySections = [
@@ -119,9 +119,7 @@ const arySections = [
 
 export default defineComponent({
   name: 'MainLayout',
-
   components: {},
-
   setup() {
     const $q = useQuasar()
     const store = useStore()

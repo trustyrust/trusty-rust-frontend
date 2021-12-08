@@ -15,7 +15,7 @@
         <div class="text-h4">FizzBuzz with functions</div>
         <div class="text-body1">The most familiar way to solve FizzBuzz is with functions. It will look something like this:</div>
         <highlightjs language="rust" :autodetect="false" :code="codeEx1" />
-        <div>executing <text-code text="cargo run" /> will predictable give you the following output:</div>
+        <div>executing <text-code>cargo run</text-code> will predictable give you the following output:</div>
         <highlightjs
           language="shell"
           :autodetect="false"
@@ -49,23 +49,23 @@ fizzbuzz for number 20 is buzz"
           Rust has a very powerful Matching syntax. For all the details you can read about it in
           <link-href link="https://doc.rust-lang.org/book/ch18-03-pattern-syntax.html" caption="Chapter 13" />
           of the Rust Book, but what we are interested in now is the ability to match <text-code>and</text-code> logic using the
-          <text-code text="tuple" /> struct. One advantage of this method over the above is that you do not need to declare any
-          <text-code text="mut" /> variables which is best practive for reducing accidential bugs later on. It will look something like
+          <text-code>tuple</text-code> struct. One advantage of this method over the above is that you do not need to declare any
+          <text-code>mut</text-code> variables which is best practive for reducing accidential bugs later on. It will look something like
           this:
         </div>
         <highlightjs language="rust" :autodetect="false" :code="codeEx2" />
         <div class="text-body1">
-          If you are not familiar the <text-code text="(true, true)" /> syntax is simply a tuple struct which means that both the first and
-          second items in the tuple must match. The <text-code text="_" /> underscore signifies to always match. This means Rust will go
-          down the match arms from top to bottom and if it is Both Fizz and Buzz it will return <text-code text="FizzBuzz" />. If not it
-          will go the second arm and check to match on <text-code text="is_fizz" /> if not it will go to the third arm and check if it
-          matches <text-code text="is_buzz" /> if not it will go to the forth arm which will match on anything (similar to default in a case
-          statment) and return the number as a String.
+          If you are not familiar the <text-code>(true, true)</text-code> syntax is simply a tuple struct which means that both the first
+          and second items in the tuple must match. The <text-code>_</text-code> underscore signifies to always match. This means Rust will
+          go down the match arms from top to bottom and if it is Both Fizz and Buzz it will return <text-code>FizzBuzz</text-code>. If not
+          it will go the second arm and check to match on <text-code>is_fizz</text-code> if not it will go to the third arm and check if it
+          matches <text-code>is_buzz</text-code> if not it will go to the forth arm which will match on anything (similar to default in a
+          case statment) and return the number as a String.
         </div>
         <div class="text-body1">
-          This code is both more concise and more clear than the last. We also do not have any <text-code text="mut" /> variables. Another
+          This code is both more concise and more clear than the last. We also do not have any <text-code>mut</text-code> variables. Another
           benefit is that built into the Rust compiler is the requirement that all possible matches are handled. This means that if you
-          where to forget to add a match arm the compiler will reject your code with <text-code text="non-exhaustive patterns" /> error.
+          where to forget to add a match arm the compiler will reject your code with <text-code>non-exhaustive patterns</text-code> error.
         </div>
         <q-separator class="q-my-lg" />
       </section>
@@ -74,9 +74,9 @@ fizzbuzz for number 20 is buzz"
         <div class="text-h4">FizzBuzz as Generic Function</div>
         <div class="text-body1">
           One of the key selling points of Rust to have Zero Cost Abstraction and using Generic Types is one of the ways to achieve this.
-          You may have noticed that we defined our <text-code text="FizzBuzz" /> function we used a <text-code text="u32" /> type. For all
-          practical purposes this would be sufficient but for learning purposes lets define the function using a generic type and call it
-          with a <text-code text="u128" />
+          You may have noticed that we defined our <text-code>FizzBuzz</text-code> function we used a <text-code>u32</text-code> type. For
+          all practical purposes this would be sufficient but for learning purposes lets define the function using a generic type and call
+          it with a <text-code>u128</text-code>
         </div>
         <highlightjs language="rust" :autodetect="false" :code="codeEx3" />
         <div class="text-body1">Executing produces the following:</div>
@@ -89,23 +89,24 @@ fizzbuzz for number 20 is Buzz
 fizzbuzz for number 12345678 is Fizz"
         />
         <div class="text-body1">
-          You will notice a fair bit more complexity to this function, so lets break it down. <text-code text="i" /> is defined as a generic
-          type <text-code text="T" /> in the function definition on line 3. Type <text-code text="T" /> has two
-          <text-code text="contraints" /> that allow it to be treated like an interger. They are <text-code text="PrimInt + Unsigned" /> on
-          line 5. This means that <text-code text="i" /> must be an a Primitive Integer and Unsigned.
+          You will notice a fair bit more complexity to this function, so lets break it down. <text-code>i</text-code> is defined as a
+          generic type <text-code>T</text-code> in the function definition on line 3. Type <text-code>T</text-code> has two
+          <text-code>contraints</text-code> that allow it to be treated like an interger. They are
+          <text-code>PrimInt + Unsigned</text-code> on line 5. This means that <text-code>i</text-code> must be an a Primitive Integer and
+          Unsigned.
         </div>
         <div class="text-body1">
           A list of PrimInts are
-          <text-code text="i128, u128, i64, u64, i32, u32, i16, u16, i8, u8, isize, usize" /> To see more about these types vist the
-          <text-code text="num" /> crate documentation
+          <text-code>i128, u128, i64, u64, i32, u32, i16, u16, i8, u8, isize, usize</text-code> To see more about these types vist the
+          <text-code>num</text-code> crate documentation
           <link-href link="https://docs.rs/num/0.4.0/num/trait.PrimInt.html" caption="PrimInt" />
         </div>
         <div class="text-body1">
-          As you can see we also added the <text-code text="Unsigned" /> contraint to restrict to only those types that are positive.
+          As you can see we also added the <text-code>Unsigned</text-code> contraint to restrict to only those types that are positive.
         </div>
         <div class="text-body1">
-          On line 6 we added the <text-code text="std::fmt::Display" /> contraint so that we can turn the integer back into a String type on
-          line 19
+          On line 6 we added the <text-code>std::fmt::Display</text-code> contraint so that we can turn the integer back into a String type
+          on line 19
         </div>
         <div class="text-body1">
           Now when we run the code we should be able to call this function with any unisgned integer type and Rust will be able to run
@@ -117,8 +118,8 @@ fizzbuzz for number 12345678 is Fizz"
         <div class="text-h4">FizzBuzz impl From trait</div>
         <highlightjs language="rust" :autodetect="false" :code="codeEx4" />
         <div class="text-body2 q-pb-md">
-          *Note: to reduce complexity you can see in line 12 that we implemented using type <text-code text="u32" /> rather than defining a
-          Genereric Type but the same approach with generics could have been used.
+          *Note: to reduce complexity you can see in line 12 that we implemented using type <text-code>u32</text-code> rather than defining
+          a Genereric Type but the same approach with generics could have been used.
         </div>
         <div class="text-body1">
           The first thing you will notice is that using <text-code>impl</text-code> feels much more like Object Orientied Programming. First
@@ -132,7 +133,7 @@ fizzbuzz for number 12345678 is Fizz"
           <ul class="q-pt-sm">
             <li>
               <div class="text-body1">
-                <text-code>borrow_value</text-code> will return a <text-code :text="`&str`"></text-code> or a borrowed reference to the
+                <text-code>borrow_value</text-code> will return a <text-code>&amp;str</text-code> or a borrowed reference to the
                 <text-code>val</text-code> within the struct.
               </div>
             </li>
@@ -147,9 +148,7 @@ fizzbuzz for number 12345678 is Fizz"
             </li>
 
             <li>
-              <div class="text-body1">
-                The <text-code :text="`impl From<u32> for FizzBuzz`"></text-code> acts like our settor or contructor.
-              </div>
+              <div class="text-body1">The <text-code>impl From&lt;u32&gt; for FizzBuzz</text-code> acts like our settor or contructor.</div>
               <div class="text-body1">
                 The <text-code>impl</text-code> accepts a <text-code>u32</text-code> and returns a <text-code>FizzBuzz</text-code> struct.
               </div>
@@ -188,6 +187,7 @@ import { useRouter } from 'vue-router'
 import TextCode from 'src/components/text-code.vue'
 import TableOfContents from 'src/components/TableOfContents.vue'
 import LinkHref from 'src/components/LinkHref.vue'
+import highlightjs from 'src/components/Highlightjs.vue'
 import { addLineNumbersToCodeBlocks } from 'src/boot/preload'
 
 export default defineComponent({
@@ -196,6 +196,7 @@ export default defineComponent({
     TextCode,
     TableOfContents,
     LinkHref,
+    highlightjs,
   },
   methods: {},
   setup() {
