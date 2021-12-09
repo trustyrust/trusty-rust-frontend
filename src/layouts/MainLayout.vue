@@ -94,6 +94,12 @@
                 <q-item-label>{{ section.name }}</q-item-label>
               </q-item-section>
             </q-item>
+            <q-item :manual-focus="true" :clickable="false">
+              <q-item-section>
+                <q-btn v-if="!isLoggedIn" class="q-mx-md" color="deep-orange" rounded no-caps label="Sign Up" @click="onSignUp" />
+                <q-btn v-else outline class="q-mx-md" rounded color="warning" label="logout" @click="onLogout" />
+              </q-item-section>
+            </q-item>
           </q-list>
         </div>
       </div>
