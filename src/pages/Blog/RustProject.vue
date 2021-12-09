@@ -37,7 +37,7 @@
       <section>
         <div class="text-h4">Setting up in vscode</div>
         <div class="text-body1">First create your project by:</div>
-        <highlightjs
+        <highlight-js
           language="shell"
           :autodetect="false"
           :code="`# create the project
@@ -54,7 +54,7 @@ $ code .`"
           <text-code>main.rs</text-code> file with a <text-code>fn main()</text-code>. This is the the most basic project setup and can be
           run with:
         </div>
-        <highlightjs
+        <highlight-js
           language="shell"
           :autodetect="false"
           :code="`$ cargo run
@@ -70,7 +70,7 @@ Hello, world!
           To aid in development you are are going to need default build task defined in <text-code>task.json</text-code>. Create a
           <text-code>.vscode/tasks.json</text-code> directory and file if it does not already exist.
         </div>
-        <highlightjs
+        <highlight-js
           language="shell"
           :autodetect="false"
           :code="`$ mkdir .vscode
@@ -78,7 +78,7 @@ $ touch .vscode/tasks.json
 `"
         />
         <div class="text-body1">Inside your <text-code>tasks.json</text-code> file, add the following:</div>
-        <highlightjs language="json" :autodetect="false" :code="txtTaskJson" />
+        <highlight-js language="json" :autodetect="false" :code="txtTaskJson" />
         <div class="text-body1">
           Now whenever you Run Default Build Task <text-code>Ctrl + Shift + B</text-code> it will execute
           <text-code>cargo check</text-code>. Cargo Check will not actually build the project but rather check to make sure you do not have
@@ -94,7 +94,7 @@ $ touch .vscode/tasks.json
       <section>
         <div class="text-h4">Setting up launch.json</div>
         <div class="text-body1">To run and debug code you need to setup a <text-code>launch.json</text-code> file.</div>
-        <highlightjs
+        <highlight-js
           language="shell"
           :autodetect="false"
           :code="`$ mkdir .vscode
@@ -102,7 +102,7 @@ $ touch .vscode/launch.json
 `"
         />
         <div class="text-body1">Inside your <text-code>launch.json</text-code> file, add the following:</div>
-        <highlightjs language="json" :autodetect="false" :code="txtLaunchJson" />
+        <highlight-js language="json" :autodetect="false" :code="txtLaunchJson" />
         <div class="text-body2 q-mt-md">
           *Note: adjust program in line 8 from <text-code>my-rust-project</text-code> to whatever the program name is defined in your
           <text-code>Cargo.toml</text-code> file.
@@ -126,7 +126,7 @@ $ touch .vscode/launch.json
           </ul>
         </div>
         <div class="text-body1">Add this to either file</div>
-        <highlightjs language="json" :autodetect="false" :code="txtSettingsJson" />
+        <highlight-js language="json" :autodetect="false" :code="txtSettingsJson" />
         <div class="text-body1">
           Now you should get nice formatted Rust code every time you press <text-code>Shift + Alt + F</text-code>
         </div>
@@ -136,13 +136,13 @@ $ touch .vscode/launch.json
         </div>
         <div class="text-body1">
           All configurations can be found here:
-          <link-href to="https://github.com/rust-lang/rustfmt/blob/master/Configurations.md">rustfmt configurations</link-href>
+          <link-href link="https://github.com/rust-lang/rustfmt/blob/master/Configurations.md">rustfmt configurations</link-href>
         </div>
-        <highlightjs language="shell" :autodetect="false" :code="`touch rustfmt.toml`" />
+        <highlight-js language="shell" :autodetect="false" :code="`touch rustfmt.toml`" />
         <div class="text-body1">
           For Example to adjust the maximum width of each line, simply add to <text-code>rustfmt.toml</text-code>
         </div>
-        <highlightjs language="shell" :autodetect="false" :code="`max_width = 200`" />
+        <highlight-js language="shell" :autodetect="false" :code="`max_width = 200`" />
       </section>
     </div>
     <table-of-contents />
@@ -155,6 +155,7 @@ import { useRouter } from 'vue-router'
 import TextCode from 'src/components/text-code.vue'
 import LinkHref from 'src/components/LinkHref.vue'
 import TableOfContents from 'src/components/TableOfContents.vue'
+import HighlightJs from 'src/components/HighlightJs.vue'
 import { addLineNumbersToCodeBlocks } from 'src/boot/preload'
 
 export default defineComponent({
@@ -163,6 +164,7 @@ export default defineComponent({
     TableOfContents,
     TextCode,
     LinkHref,
+    HighlightJs,
   },
   methods: {},
   setup() {

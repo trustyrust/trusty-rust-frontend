@@ -187,7 +187,7 @@ import { useRouter } from 'vue-router'
 import TextCode from 'src/components/text-code.vue'
 import TableOfContents from 'src/components/TableOfContents.vue'
 import LinkHref from 'src/components/LinkHref.vue'
-import highlightjs from 'src/components/Highlightjs.vue'
+import highlightjs from 'src/components/HighlightJs.vue'
 import { addLineNumbersToCodeBlocks } from 'src/boot/preload'
 
 export default defineComponent({

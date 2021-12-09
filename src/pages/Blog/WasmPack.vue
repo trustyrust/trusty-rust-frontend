@@ -1,8 +1,6 @@
 <template>
   <q-page padding class="full-width row no-wrap">
-    <div class="col">
-
-    </div>
+    <div class="col"></div>
 
     <!-- https://rustwasm.github.io/docs/wasm-pack/prerequisites/non-rustup-setups.html
 https://depth-first.com/articles/2020/06/29/compiling-rust-to-webassembly-a-simple-example/
@@ -30,7 +28,7 @@ When a parameter is not important, it can be omitted, or you can choose unknown 
 Finally, the ABI option is something that will pick default CPU/FPU, define the specific behaviour of your code (PCS, extensions), and also choose the correct library calls, etc. -->
 
     <!-- content -->
-    <!-- <table-of-contents /> -->
+    <table-of-contents />
   </q-page>
 </template>
 
@@ -39,11 +37,15 @@ import { onMounted } from 'vue'
 import TextCode from 'src/components/text-code.vue'
 import TableOfContents from 'src/components/TableOfContents.vue'
 import LinkHref from 'src/components/LinkHref.vue'
-import highlightjs from 'src/components/Highlightjs.vue'
+import HighlightJs from 'src/components/HighlightJs.vue'
 import { addLineNumbersToCodeBlocks } from 'src/boot/preload'
 
 export default {
   components: {
+    TableOfContents,
+    // TextCode,
+    // LinkHref,
+    // HighlightJs,
   },
   setup() {
     onMounted(() => {
