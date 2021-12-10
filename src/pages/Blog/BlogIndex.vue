@@ -30,6 +30,7 @@ const aryEssentials = [
 const aryBlogPosts = [
   { label: 'FizzBuzz in Rust', path: '/blog/fizzbuzz' },
   { label: '', path: '/blog/wasm-pack' },
+  { label: '', path: '/blog/wasm-pack-advanced' },
 ]
 export default {
   components: {

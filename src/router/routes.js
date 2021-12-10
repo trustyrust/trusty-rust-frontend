@@ -19,6 +19,7 @@ const routes = [
       { path: 'why-use-rust', component: () => import('pages/Blog/WhyRust.vue') },
       { path: 'fizzbuzz', component: () => import('pages/Blog/FizzBuzz.vue') },
       { path: 'wasm-pack', component: () => import('pages/Blog/WasmPack.vue') },
+      { path: 'wasm-pack-advanced', component: () => import('pages/Blog/WasmPackAdvanced.vue') },
     ]
   },
 

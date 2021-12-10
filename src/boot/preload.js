@@ -7,11 +7,14 @@ import zxcvbn from 'zxcvbn'
 // import 'highlight.js/styles/atom-one-dark-reasonable.css'
 // import 'highlight.js/styles/arduino-light.css'
 import hljs from 'highlight.js/lib/core';
-import javascript from 'highlight.js/lib/languages/javascript';
+// import javascript from 'highlight.js/lib/languages/javascript';
+import typescript from 'highlight.js/lib/languages/typescript';
 import json from 'highlight.js/lib/languages/json';
 import rust from 'highlight.js/lib/languages/rust';
+import plaintext from 'highlight.js/lib/languages/plaintext';
 import ini from 'highlight.js/lib/languages/ini';
 import shell from 'highlight.js/lib/languages/shell';
+import xml from 'highlight.js/lib/languages/xml';
 // import hljsVuePlugin from "@highlightjs/vue-plugin";
 import highlightjsLineNumbers from 'highlightjs-line-numbers2.js'
 
@@ -23,10 +26,13 @@ import highlightjsLineNumbers from 'highlightjs-line-numbers2.js'
 // for each client)
 
 export default boot(async ({ app, store, router }) => {
-    hljs.registerLanguage('shell', shell);
     hljs.registerLanguage('ini', ini);
+    hljs.registerLanguage('xml', xml);
+    hljs.registerLanguage('shell', shell);
+    hljs.registerLanguage('plaintext', plaintext);
     hljs.registerLanguage('rust', rust);
-    hljs.registerLanguage('javascript', javascript);
+    // hljs.registerLanguage('javascript', javascript);
+    hljs.registerLanguage('typescript', typescript);
     hljs.registerLanguage('json', json);
     hljs.configure({ ignoreUnescapedHTML: true })
     // hljs.highlightAll()

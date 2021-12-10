@@ -17,7 +17,7 @@
         <ul>
           <li>
             <div class="text-body1">To install Rust on <text-code>Linux</text-code> or <text-code>Mac</text-code> simply run:</div>
-            <highlight-js language="shell" :autodetect="false" :code="'curl https://sh.rustup.rs -sSf | sh'" />
+            <highlight-js language="shell" :code="'curl https://sh.rustup.rs -sSf | sh'" />
           </li>
           <li>
             <div class="text-body1">To install Rust on <text-code>Windows</text-code>, download and run:</div>
@@ -37,7 +37,6 @@
           If you have installed Rust correctly you should be able to run:
           <highlight-js
             language="shell"
-            :autodetect="false"
             :code="`# check rustc version
 rustc --version
 
@@ -56,7 +55,7 @@ cargo --version`"
           <div class="text-body2">
             Usually you can fix by adding the following into your <text-code>.zshrc</text-code> or <text-code>.bashrc</text-code>
           </div>
-          <highlight-js language="shell" :autodetect="false" :code="txtShellPath" />
+          <highlight-js language="shell" :code="txtShellPath" />
         </div>
         <q-separator class="q-my-lg" />
       </section>
@@ -70,13 +69,12 @@ cargo --version`"
         <ul>
           <li>
             <div class="text-body1">Toolchain Types are:</div>
-            <highlight-js language="shell" :autodetect="false" :code="`stable | beta | nightly | <major.minor> | <major.minor.patch>`" />
+            <highlight-js language="shell" :code="`stable | beta | nightly | <major.minor> | <major.minor.patch>`" />
           </li>
           <li>
             <div class="text-body1">Update your rustup</div>
             <highlight-js
               language="shell"
-              :autodetect="false"
               :code="`# general update
 rustup update
 
@@ -88,7 +86,6 @@ rustup update stable`"
             <div class="text-body1">Download or Uninstall specific toolchain and set default</div>
             <highlight-js
               language="shell"
-              :autodetect="false"
               :code="`
 # download toolchain stable|beta|nightly
 rustup toolchain install stable
@@ -108,7 +105,7 @@ rustup default stable`"
               To see your current configuration of Rust, the below command will give you an output that shows installed toolchains,
               installed targets, and your active toolchain:
             </div>
-            <highlight-js language="shell" :autodetect="false" :code="`rustup show`" />
+            <highlight-js language="shell" :code="`rustup show`" />
             <div class="text-body1"></div>
           </li>
           <li>
@@ -116,10 +113,14 @@ rustup default stable`"
               Rust has many different <text-code>targets</text-code> depending on what hardware you are building your application for. To
               see them run:
             </div>
-            <highlight-js language="shell" :autodetect="false" :code="`rustup target list`" />
-            <div class="text-body1">
+            <highlight-js language="shell" :code="`rustup target list`" />
+            <div class="text-subtitle2">
+              * Note: each target will be in
+              <link-href link="https://clang.llvm.org/docs/CrossCompilation.html#target-triple">target-triple</link-href> format
+            </div>
+            <div class="text-body1 q-pt-lg">
               To install a specific target
-              <highlight-js language="shell" :autodetect="false" :code="`rustup target add x86_64-pc-windows-gnu --toolchain stable`" />
+              <highlight-js language="shell" :code="`rustup target add x86_64-pc-windows-gnu --toolchain stable`" />
             </div>
           </li>
         </ul>

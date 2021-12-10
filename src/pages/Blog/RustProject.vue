@@ -39,7 +39,6 @@
         <div class="text-body1">First create your project by:</div>
         <highlight-js
           language="shell"
-          :autodetect="false"
           :code="`# create the project
 $ cargo init my-rust-project
 
@@ -56,7 +55,6 @@ $ code .`"
         </div>
         <highlight-js
           language="shell"
-          :autodetect="false"
           :code="`$ cargo run
 Hello, world!
 `"
@@ -72,13 +70,12 @@ Hello, world!
         </div>
         <highlight-js
           language="shell"
-          :autodetect="false"
           :code="`$ mkdir .vscode
 $ touch .vscode/tasks.json
 `"
         />
         <div class="text-body1">Inside your <text-code>tasks.json</text-code> file, add the following:</div>
-        <highlight-js language="json" :autodetect="false" :code="txtTaskJson" />
+        <highlight-js language="json" :code="txtTaskJson" />
         <div class="text-body1">
           Now whenever you Run Default Build Task <text-code>Ctrl + Shift + B</text-code> it will execute
           <text-code>cargo check</text-code>. Cargo Check will not actually build the project but rather check to make sure you do not have
@@ -96,13 +93,12 @@ $ touch .vscode/tasks.json
         <div class="text-body1">To run and debug code you need to setup a <text-code>launch.json</text-code> file.</div>
         <highlight-js
           language="shell"
-          :autodetect="false"
           :code="`$ mkdir .vscode
 $ touch .vscode/launch.json
 `"
         />
         <div class="text-body1">Inside your <text-code>launch.json</text-code> file, add the following:</div>
-        <highlight-js language="json" :autodetect="false" :code="txtLaunchJson" />
+        <highlight-js language="json" :code="txtLaunchJson" />
         <div class="text-body2 q-mt-md">
           *Note: adjust program in line 8 from <text-code>my-rust-project</text-code> to whatever the program name is defined in your
           <text-code>Cargo.toml</text-code> file.
@@ -126,7 +122,7 @@ $ touch .vscode/launch.json
           </ul>
         </div>
         <div class="text-body1">Add this to either file</div>
-        <highlight-js language="json" :autodetect="false" :code="txtSettingsJson" />
+        <highlight-js language="json" :code="txtSettingsJson" />
         <div class="text-body1">
           Now you should get nice formatted Rust code every time you press <text-code>Shift + Alt + F</text-code>
         </div>
@@ -138,11 +134,11 @@ $ touch .vscode/launch.json
           All configurations can be found here:
           <link-href link="https://github.com/rust-lang/rustfmt/blob/master/Configurations.md">rustfmt configurations</link-href>
         </div>
-        <highlight-js language="shell" :autodetect="false" :code="`touch rustfmt.toml`" />
+        <highlight-js language="shell" :code="`touch rustfmt.toml`" />
         <div class="text-body1">
           For Example to adjust the maximum width of each line, simply add to <text-code>rustfmt.toml</text-code>
         </div>
-        <highlight-js language="shell" :autodetect="false" :code="`max_width = 200`" />
+        <highlight-js language="shell" :code="`max_width = 200`" />
       </section>
     </div>
     <table-of-contents />
