@@ -198,6 +198,11 @@ impl<T> JsDataWrapper<T> {
     }
 }
 `,
+      codeEx2: `[dependencies]
+wasm-bindgen = { version = "0.2.63", features = ["serde-serialize"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0.72"
+`,
       codeEx3: `use serde::{Deserialize, Serialize};
 use wasm_bindgen::JsValue;
 
