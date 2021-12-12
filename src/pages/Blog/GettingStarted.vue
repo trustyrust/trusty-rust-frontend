@@ -4,7 +4,13 @@
       <section>
         <div class="text-h2">Getting Started with Rust</div>
         <div class="text-body1">
-          In this post we will go through how to install and setup Rust! Also below are listed some good resources for learning Rust
+          In this post we will go through how to install and setup Rust! Also below are listed some good resources for learning Rust. Also
+          be sure to watch the companion video for this Post.
+        </div>
+        <div class="row q-py-md">
+          <div class="col-12 col-md-6 offset-md-3">
+            <q-video src="https://www.youtube.com/embed/kqLe-WZuvKU" frameborder="0" allowfullscreen :ratio="16 / 9" />
+          </div>
         </div>
         <q-separator class="q-my-lg" />
       </section>
