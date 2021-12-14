@@ -29,6 +29,7 @@ const aryEssentials = [
 ]
 const aryBlogPosts = [
   { label: 'FizzBuzz in Rust', path: '/blog/fizzbuzz' },
+  { label: '', path: '/blog/error-handling' },
   { label: '', path: '/blog/wasm-pack' },
   { label: '', path: '/blog/wasm-pack-advanced' },
 ]

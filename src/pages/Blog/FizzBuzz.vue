@@ -14,11 +14,10 @@
       <section>
         <div class="text-h4">FizzBuzz with functions</div>
         <div class="text-body1">The most familiar way to solve FizzBuzz is with functions. It will look something like this:</div>
-        <highlightjs language="rust"  :code="codeEx1" />
+        <highlight-js language="rust" :code="codeEx1" />
         <div>executing <text-code>cargo run</text-code> will predictable give you the following output:</div>
-        <highlightjs
+        <highlight-js
           language="shell"
-          
           code="$ cargo run
 fizzbuzz for number 1 is 1
 fizzbuzz for number 2 is 2
@@ -53,7 +52,7 @@ fizzbuzz for number 20 is buzz"
           <text-code>mut</text-code> variables which is best practive for reducing accidential bugs later on. It will look something like
           this:
         </div>
-        <highlightjs language="rust"  :code="codeEx2" />
+        <highlight-js language="rust" :code="codeEx2" />
         <div class="text-body1">
           If you are not familiar the <text-code>(true, true)</text-code> syntax is simply a tuple struct which means that both the first
           and second items in the tuple must match. The <text-code>_</text-code> underscore signifies to always match. This means Rust will
@@ -78,11 +77,10 @@ fizzbuzz for number 20 is buzz"
           all practical purposes this would be sufficient but for learning purposes lets define the function using a generic type and call
           it with a <text-code>u128</text-code>
         </div>
-        <highlightjs language="rust"  :code="codeEx3" />
+        <highlight-js language="rust" :code="codeEx3" />
         <div class="text-body1">Executing produces the following:</div>
-        <highlightjs
+        <highlight-js
           language="shell"
-          
           code="$ cargo run
 fizzbuzz for number 340282366920938463463374607431768211455 is FizzBuzz
 fizzbuzz for number 20 is Buzz
@@ -116,7 +114,7 @@ fizzbuzz for number 12345678 is Fizz"
       </section>
       <section>
         <div class="text-h4">FizzBuzz impl From trait</div>
-        <highlightjs language="rust"  :code="codeEx4" />
+        <highlight-js language="rust" :code="codeEx4" />
         <div class="text-body2 q-pb-md">
           *Note: to reduce complexity you can see in line 12 that we implemented using type <text-code>u32</text-code> rather than defining
           a Genereric Type but the same approach with generics could have been used.
@@ -143,8 +141,8 @@ fizzbuzz for number 12345678 is Fizz"
                 <text-code>val</text-code> within the struct into the variable you assigned it. Because of this move in ownership this
                 function can only be called one time. Calling it more than once will cause an error from the compiler. See below:
               </div>
-              <highlightjs language="rust"  :code="codeEx4_sub" />
-              <highlightjs language="shell"  :code="codeEx4_sub_err" />
+              <highlight-js language="rust" :code="codeEx4_sub" />
+              <highlight-js language="shell" :code="codeEx4_sub_err" />
             </li>
 
             <li>
@@ -161,9 +159,9 @@ fizzbuzz for number 12345678 is Fizz"
           <text-code>String</text-code> result we can call <text-code>borrow_value()</text-code> or <text-code>take_value()</text-code>.
         </div>
         <div class="text-body1">As a one-liner to get FizzBuzz from the integer 30 would look like:</div>
-        <highlightjs language="rust"  :code="`let result: &str = FizzBuzz::from(30).borrow_value();`" />
+        <highlight-js language="rust" :code="`let result: &str = FizzBuzz::from(30).borrow_value();`" />
         <div class="text-body1">Or</div>
-        <highlightjs language="rust"  :code="`let result: String = FizzBuzz::from(30).take_value();`" />
+        <highlight-js language="rust" :code="`let result: String = FizzBuzz::from(30).take_value();`" />
         <q-separator class="q-my-lg" />
       </section>
       <section>
@@ -174,6 +172,11 @@ fizzbuzz for number 12345678 is Fizz"
           implementing those traits to suit your needs. For now enjoy knowing there are many ways to represent the FizzBuzz problem within
           the Rust language. The goal of this Post is to demonstrate some of the nice features of Rust such as an advanced pattern matching
           syntax, generic types, and the impl of a struct.
+        </div>
+        <div class="text-h4 q-pt-md">GitHub Source Code</div>
+        <div class="text-body1">
+          The complete source code for this example can be accessed in GitHub here:
+          <link-href link="https://github.com/trustyrust/trusty-rust-examples/tree/master/examples/fizz_Buzz">GitHub FizzBuzz</link-href>
         </div>
       </section>
     </div>
@@ -187,7 +190,7 @@ import { useRouter } from 'vue-router'
 import TextCode from 'src/components/text-code.vue'
 import TableOfContents from 'src/components/TableOfContents.vue'
 import LinkHref from 'src/components/LinkHref.vue'
-import highlightjs from 'src/components/HighlightJs.vue'
+import HighlightJs from 'src/components/HighlightJs.vue'
 import { addLineNumbersToCodeBlocks } from 'src/boot/preload'
 
 export default defineComponent({
@@ -196,7 +199,7 @@ export default defineComponent({
     TextCode,
     TableOfContents,
     LinkHref,
-    highlightjs,
+    HighlightJs,
   },
   methods: {},
   setup() {

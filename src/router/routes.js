@@ -20,6 +20,7 @@ const routes = [
       { path: 'fizzbuzz', component: () => import('pages/Blog/FizzBuzz.vue') },
       { path: 'wasm-pack', component: () => import('pages/Blog/WasmPack.vue') },
       { path: 'wasm-pack-advanced', component: () => import('pages/Blog/WasmPackAdvanced.vue') },
+      { path: 'error-handling', component: () => import('pages/Blog/ErrorHandling.vue') },
     ]
   },
 
