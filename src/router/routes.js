@@ -21,6 +21,7 @@ const routes = [
       { path: 'wasm-pack', component: () => import('pages/Blog/WasmPack.vue') },
       { path: 'wasm-pack-advanced', component: () => import('pages/Blog/WasmPackAdvanced.vue') },
       { path: 'error-handling', component: () => import('pages/Blog/ErrorHandling.vue') },
+      { path: 'rust-web-socket', component: () => import('pages/Blog/WebSocket.vue') },
     ]
   },
 

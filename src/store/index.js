@@ -1,6 +1,5 @@
 import { store } from 'quasar/wrappers'
 import { createStore } from 'vuex'
-// import VuexPersistence from 'vuex-persist'
 import createPersistedState from "vuex-persistedstate";
 import Cookies from 'js-cookie';
 import cookie from 'cookie';

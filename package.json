@@ -9,6 +9,7 @@
     "lint": "eslint --ext .js,.vue ./",
     "dev": "quasar dev -m ssr",
     "build": "quasar build -m ssr",
+    "deploy": "rm -rf ./deploy && mv dist/ssr/ ./deploy && cd deploy && npm run start",
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {

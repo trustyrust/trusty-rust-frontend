@@ -3,13 +3,13 @@
     <div class="col">
       <section>
         <div class="text-h2">Create Rust Project</div>
-        <div class="text-body1">In this post we will go through how to create a Rust Project and Debug with vscode</div>
+        <div class="text-body1">In this post, we will go through how to create a Rust project and debug with VsCode</div>
         <q-separator class="q-my-lg" />
       </section>
       <section>
         <div class="text-h4">Prerequisites</div>
         <div class="text-body1">
-          To setup the optimal environment in VsCode for working with Rust code, please install the following extensions:
+          To set up the optimal environment in VsCode for working with Rust code, please install the following extensions:
           <ul>
             <li>
               <link-href link="https://marketplace.visualstudio.com/items?itemName=vadimcn.vscode-lldb">CodeLLDB</link-href>
@@ -17,7 +17,7 @@
             <li>
               <link-href link="https://marketplace.visualstudio.com/items?itemName=matklad.rust-analyzer">rust-analyzer</link-href> Or
               <link-href link="https://marketplace.visualstudio.com/items?itemName=rust-lang.rust">Rust</link-href>&nbsp;
-              <span class="text-body2 q-mt-md">*Note: Install either one but not Both as they will conflict with each other</span>
+              <span class="text-body2 q-mt-md">*Note: Install either one but not both as they will conflict with each other</span>
             </li>
           </ul>
         </div>
@@ -65,7 +65,7 @@ Hello, world!
       <section>
         <div class="text-h4">Setting up tasks.json</div>
         <div class="text-body1">
-          To aid in development you are are going to need default build task defined in <text-code>task.json</text-code>. Create a
+          To aid in development, you are going to need a default build task defined in <text-code>task.json</text-code>. Create a
           <text-code>.vscode/tasks.json</text-code> directory and file if it does not already exist.
         </div>
         <highlight-js
@@ -78,19 +78,19 @@ $ touch .vscode/tasks.json
         <highlight-js language="json" :code="txtTaskJson" />
         <div class="text-body1">
           Now whenever you Run Default Build Task <text-code>Ctrl + Shift + B</text-code> it will execute
-          <text-code>cargo check</text-code>. Cargo Check will not actually build the project but rather check to make sure you do not have
+          <text-code>cargo check</text-code>. Cargo Check will not actually build the project, but rather check to make sure you do not have
           any syntax errors.
         </div>
         <div class="text-body2 q-mt-md">
           *Note: if you prefer <text-code>cargo build</text-code> change line 6 to <text-code>"command": "build"</text-code><br />It is
-          usually preferable to use check rather than build as projects grow build times can get long. Additionally, if need to run the
-          code, <text-code>cargo run</text-code> will automatically build the project before running so you are not losing anything.
+          usually preferable to use check rather than build, as projects grow, build times can get long. Additionally, if you need to run
+          the code, <text-code>cargo run</text-code> will automatically build the project before running so you are not losing anything.
         </div>
         <q-separator class="q-my-lg" />
       </section>
       <section>
         <div class="text-h4">Setting up launch.json</div>
-        <div class="text-body1">To run and debug code you need to setup a <text-code>launch.json</text-code> file.</div>
+        <div class="text-body1">To run and debug code, you need to set up a <text-code>launch.json</text-code> file.</div>
         <highlight-js
           language="shell"
           :code="`$ mkdir .vscode
@@ -100,12 +100,12 @@ $ touch .vscode/launch.json
         <div class="text-body1">Inside your <text-code>launch.json</text-code> file, add the following:</div>
         <highlight-js language="json" :code="txtLaunchJson" />
         <div class="text-body2 q-mt-md">
-          *Note: adjust program in line 8 from <text-code>my-rust-project</text-code> to whatever the program name is defined in your
+          *Note: adjust program in line 8 from <text-code>my-rust-project</text-code> to the program name defined in your
           <text-code>Cargo.toml</text-code> file.
         </div>
 
         <div class="text-body1 q-mt-md">
-          Now you should be ready for attaching the vscode debugger. First build your project with <text-code>cargo build</text-code> and
+          Now you should be ready for attaching the VsCode debugger. First build your project with <text-code>cargo build</text-code> and
           then "Start Debugging" by setting your breakpoints and pressing <text-code>F5</text-code>
         </div>
         <q-separator class="q-my-lg" />
@@ -113,9 +113,9 @@ $ touch .vscode/launch.json
       <section>
         <div class="text-h4">Formatting Code</div>
         <div class="text-body1">
-          Something that often gets overlooked is Code Formatting. This small details in code format can make a big difference in
-          readability. Luckily vscode extension above has a build in Rust Formatter. It should be picked up by default but it is not, you
-          can set it manually in your <text-code>settings.json</text-code> file.
+          Something that often gets overlooked is code formatting. The small details in code format can make a big difference in
+          readability. Luckily the VsCode extension above has a built-in Rust Formatter. It should be picked up by default but if it is not,
+          you can set it manually in your <text-code>settings.json</text-code> file.
           <ul>
             <li>locally for project specific: <text-code>.vscode/settings.json</text-code></li>
             <li>globally for all projects: <text-code>~/.config/Code/User/settings.json</text-code></li>
@@ -127,8 +127,8 @@ $ touch .vscode/launch.json
           Now you should get nice formatted Rust code every time you press <text-code>Shift + Alt + F</text-code>
         </div>
         <div class="text-body1">
-          If you like to adjust the default formatting settings add <text-code>rustfmt.toml</text-code> file to your root project folder and
-          you can add configurations just like you would in a <text-code>.prettierrc.json</text-code>
+          If you would like to adjust the default formatting settings, add <text-code>rustfmt.toml</text-code> file to your root project
+          folder and you can add configurations just like you would in a <text-code>.prettierrc.json</text-code>
         </div>
         <div class="text-body1">
           All configurations can be found here:
@@ -136,7 +136,7 @@ $ touch .vscode/launch.json
         </div>
         <highlight-js language="shell" :code="`touch rustfmt.toml`" />
         <div class="text-body1">
-          For Example to adjust the maximum width of each line, simply add to <text-code>rustfmt.toml</text-code>
+          For example, to adjust the maximum width of each line, simply add to <text-code>rustfmt.toml</text-code>
         </div>
         <highlight-js language="shell" :code="`max_width = 200`" />
       </section>

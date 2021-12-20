@@ -32,6 +32,7 @@ const aryBlogPosts = [
   { label: '', path: '/blog/error-handling' },
   { label: '', path: '/blog/wasm-pack' },
   { label: '', path: '/blog/wasm-pack-advanced' },
+  { label: '', path: '/blog/rust-web-socket' },
 ]
 export default {
   components: {

@@ -4,8 +4,8 @@
       <section>
         <div class="text-h2">Getting Started with Rust</div>
         <div class="text-body1">
-          In this post we will go through how to install and setup Rust! Also below are listed some good resources for learning Rust. Also
-          be sure to watch the companion video for this Post.
+          In this post, we will go through how to install and set up Rust! Also below are listed some good resources for learning Rust.
+          Also, be sure to watch the companion video for this post.
         </div>
         <div class="row q-py-md">
           <div class="col-12 col-md-6 offset-md-3">
@@ -37,7 +37,7 @@
         <div class="text-h4">Rustup and Cargo</div>
         <div class="text-body1">
           <text-code>rustup</text-code> is your main Rust version manager, similar to <text-code>nvm</text-code><br />
-          <text-code>cargo</text-code> is you main package manager, similar to <text-code>npm</text-code>
+          <text-code>cargo</text-code> is your main package manager, similar to <text-code>npm</text-code>
         </div>
         <div class="text-body1">
           If you have installed Rust correctly you should be able to run:
@@ -50,7 +50,7 @@ rustc --version
 cargo --version`"
           />
           <div class="text-body2">
-            *Note: if you are having trouble executing either rustup or cargo you may need to add the executable into your $PATH variable.
+            *Note: if you are having trouble executing either rustup or cargo, you may need to add the executable into your $PATH variable.
             See this post from
             <link-href
               link="https://stackoverflow.com/questions/50586535/make-rustc-cargo-rustup-rustdoc-commands-work-without-sudo-inside-the-windows"
@@ -68,9 +68,9 @@ cargo --version`"
       <section>
         <div class="text-h4">Using Rustup</div>
         <div class="text-body1 q-pb-md">
-          Everything you could ever like to know about rustc can be found here:
+          Everything you would ever like to know about rustc can be found here:
           <link-href link="https://doc.rust-lang.org/nightly/rustc/what-is-rustc.html" caption="rustc" />. Below are some important concepts
-          and commands you might want to familiarize yourself with.
+          and commands you might want to familiarize yourself with:
         </div>
         <ul>
           <li>
@@ -137,11 +137,11 @@ rustup default stable`"
       <section>
         <div class="text-h4">Rust Resources</div>
         <div class="text-body1">
-          Don't forget to see the next Blog Post for tips and tricks on how to setup Rust in vscode for debugging and fast compile times
+          Don't forget to see the next Blog Post for tips and tricks on how to set up Rust in vscode for debugging and fast compile times
           here: <blog-link to="/blog/setting-up-rust-in-vscode">Setting Up Rust in vscode</blog-link>
         </div>
         <div class="text-body1 q-pt-md">
-          Below are some helpful resources to navigate the Language of Rust
+          Below are some helpful resources to navigate the language of Rust:
           <ul>
             <li>
               <link-href caption="This Blog! TrustyRust.com" link="https://trustyrust.com" />
@@ -154,8 +154,8 @@ rustup default stable`"
             </li>
             <li><link-href caption="crates.io" link="https://crates.io" /> (repository of Rust libraries)</li>
             <li>
-              <link-href caption="Awesome Rust" link="https://github.com/rust-unofficial/awesome-rust" /> Unofficial list of Interesting
-              Rust Projects
+              <link-href caption="Awesome Rust" link="https://github.com/rust-unofficial/awesome-rust" /> Unofficial list of interesting
+              Rust projects
             </li>
             <li>
               <link-href caption="Rust Web Framework Comparison" link="https://github.com/flosse/rust-web-framework-comparison" />
