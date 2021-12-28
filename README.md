@@ -47,3 +47,4 @@ https://auth0.com/blog/build-and-secure-a-simple-symfony-api-server-using-auth0/
 https://yew.rs/
 https://blog.rust-lang.org/
 https://m4rw3r.github.io/rust-questionmark-operator
+https://blog.logrocket.com/a-practical-guide-to-async-in-rust/
