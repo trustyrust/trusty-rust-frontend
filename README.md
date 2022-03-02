@@ -48,3 +48,5 @@ https://yew.rs/
 https://blog.rust-lang.org/
 https://m4rw3r.github.io/rust-questionmark-operator
 https://blog.logrocket.com/a-practical-guide-to-async-in-rust/
+https://cafbit.com/post/tokio_internals/
+https://aturon.github.io/blog/2016/08/11/futures/

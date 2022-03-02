@@ -53,6 +53,22 @@
             <text-code :background="false">ws_open_sockets.rs</text-code>
             <highlight-js language="rust" :code="codeEx6" />
           </div>
+          <div class="text-body1">
+            This gets a little tricky around line 20. This is because we have to separate out incoming and outgoing from/to the client. The
+            importance of this is that even though we do not actually read any data from the client in this example we still need to look
+            for a closing message with <text-code>msg.is_close()</text-code>. Once the client socket is closed (for example leaving the
+            webpage) we need to break the loop and allow our socket channel to hangup. The second possibility is if a client cannot receive
+            what we are sending them. One way this can happen is if the client closes in the middle of <text-code>outgoing.send</text-code>.
+            It is a subtle difference, but it occurs in the <text-code>outgoing</text-code> half of the split stream so it must be handled
+            separately.
+          </div>
+          <div class="text-body1">
+            In line 25 we pin both the <text-code>incoming</text-code> and <text-code>outgoing</text-code> halves of the stream to the stack
+            with the <text-code>pin_mut!</text-code> macro so that on line 28 we can block the thread with a
+            <text-code>future::select</text-code>. We are using future::select rather than future::join so it will return as soon as either
+            half of the stream breaks. Then we hangup the channel by removing the address from the <text-code>Mutex</text-code> and closing
+            the thread.
+          </div>
         </div>
         <q-separator class="q-my-lg" />
       </section>
@@ -203,9 +219,9 @@ async fn handle_connection(map: MapSubscribe, raw_stream: TcpStream, addr: Socke
 
     println!("ws connected: {}", &addr);
     let ws_stream = tokio_tungstenite::accept_async(raw_stream).await.expect("Error during the websocket handshake occurred");
-    let (mut outgoing, _) = ws_stream.split();
+    let (mut outgoing, mut incoming) = ws_stream.split();
 
-    if let Err(e) = ws_open_sockets::on_connection(&mut outgoing, map, addr).await {
+    if let Err(e) = ws_open_sockets::on_connection(&mut outgoing, &mut incoming, map, addr).await {
         println!("Error on WebSocket {}: {}", addr, e);
         // Send error message to client
         outgoing.send(Message::Text(format!("Error: {}", e))).await.expect("Failed to close");
@@ -264,22 +280,42 @@ pub async fn subs(rx: Receiver<WsData>, map_subs: MapSubscribe) {
     }
 }`
 
-const codeEx6 = `use anyhow::Result;
-use crossbeam_channel::bounded;
-use futures::stream::SplitSink;
+const codeEx6 = `use super::MapSubscribe;
+
+use anyhow::Result;
+use crossbeam_channel::{bounded, Receiver};
+use futures::{
+    future, pin_mut,
+    stream::{SplitSink, SplitStream},
+    StreamExt,
+};
 use futures_util::SinkExt;
 use std::{net::SocketAddr, sync::Arc};
 use tokio::net::TcpStream;
 use tokio_tungstenite::{tungstenite::Message, WebSocketStream};
 
-use super::{MapSubscribe};
-
-pub async fn on_connection(outgoing: &mut SplitSink<WebSocketStream<TcpStream>, Message>, map: MapSubscribe, addr: SocketAddr) -> Result<()> {
+pub async fn on_connection(outgoing: &mut SplitSink<WebSocketStream<TcpStream>, Message>, incoming: &mut SplitStream<WebSocketStream<TcpStream>>, map: MapSubscribe, addr: SocketAddr) -> Result<()> {
     // created the crossbeam channel to communicate with subs_logic
     let (tx, rx) = bounded(1);
     map.lock().unwrap().insert(addr, Arc::new(tx));
 
     // blocking for all future subscriptions
+    let r = read_client_connected(incoming);
+    let s = send_msg(rx, outgoing);
+
+    // This pins r and s to the stack to do the future::select
+    pin_mut!(r, s);
+    // whichever future returns first, (r) client disconnects or (s) sending fails because client is unavailable
+    // should most of the time be (r) first but it happens that a client becomes unavailable in middle of transmission
+    future::select(r, s).await;
+
+    // hangup the channel
+    map.lock().unwrap().remove(&addr);
+    println!("ws disconnected: {} -> open connections: {}", &addr, Arc::strong_count(&map) - 3);
+    Ok(())
+}
+
+async fn send_msg(rx: Receiver<Arc<String>>, outgoing: &mut SplitSink<WebSocketStream<TcpStream>, Message>) {
     loop {
         match rx.recv() {
             Ok(msg_json) => {
@@ -297,12 +333,34 @@ pub async fn on_connection(outgoing: &mut SplitSink<WebSocketStream<TcpStream>, 
             }
         }
     }
+}
 
-    // hangup the channel
-    map.lock().unwrap().remove(&addr);
-    println!("ws disconnected: {} -> open connections: {}", &addr, Arc::strong_count(&map) - 3);
-    Ok(())
-}`
+async fn read_client_connected(incoming: &mut SplitStream<WebSocketStream<TcpStream>>) {
+    // As long as the client is connect incoming will be able to await on next.
+    loop {
+        let msg = incoming.next().await;
+        match msg {
+            Some(msg) => match msg {
+                Ok(msg) => {
+                    // Only care about close messages. All other messages will be ignored
+                    if msg.is_close() {
+                        println!("{}", "client disconnected, close socket gracefully");
+                        break;
+                    }
+                }
+                Err(e) => {
+                    println!("error on read_client_connected: {}", e);
+                    break;
+                }
+            },
+            None => {
+                println!("{}", "read_client_connected received None");
+                break;
+            }
+        }
+    }
+}
+`
 const codeEx7 = [
   '<html>',
   '<script>',
