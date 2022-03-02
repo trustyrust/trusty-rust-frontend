@@ -17,6 +17,7 @@ import shell from 'highlight.js/lib/languages/shell';
 import xml from 'highlight.js/lib/languages/xml';
 // import hljsVuePlugin from "@highlightjs/vue-plugin";
 import highlightjsLineNumbers from 'highlightjs-line-numbers2.js'
+import "highlightjs-badge";
 
 // Be careful when using SSR for cross-request state pollution
 // due to creating a Singleton instance here;
@@ -56,10 +57,15 @@ export default boot(async ({ app, store, router }) => {
 
 export const addLineNumbersToCodeBlocks = (langs = []) => {
     // document.querySelectorAll('pre code').forEach((el) => {
+    //     hljs.highlightBlock(el);
+    // });
+
+    // document.querySelectorAll('pre code').forEach((el) => {
     //     hljs.highlightElement(el);
     //   });
     hljs.highlightAll()
     highlightjsLineNumbers.init(hljs)
+
     if (langs.length === 0) {
         // lineNumber all blocks
         hljs.initLineNumbersOnLoad({ singleLine: true })
@@ -74,6 +80,33 @@ export const addLineNumbersToCodeBlocks = (langs = []) => {
             }
         }
     }
+    window.highlightJsBadge({
+        // CSS class(es) used to render the copy icon.
+        copyIconClass: "las la-copy",
+        // CSS class(es) used to render the done icon.
+        checkIconClass: "las la-check text-cyan",
+
+        // function called before code is placed on clipboard that allows you inspect and modify
+        // the text that goes onto the clipboard. Passes text and code root element (hljs).
+        // Example:  function(text, codeElement) { return text + " $$$"; }
+        onBeforeCodeCopied: function (text, codeElement) {
+            // There is a bug where the text doesnt return right when it has line-numbers so I doing this to fix it
+            const tbl = codeElement.querySelectorAll('.hljs-ln td:nth-child(2)')
+            if (tbl.length) {
+                const aryText = []
+                for (const t of tbl) {
+                    // console.log('tbl', t.innerText)
+                    aryText.push(t.innerText)
+                }
+
+                return aryText.join('\n')
+                // console.log('codeElement', codeElement)
+                // console.log('text', text)`
+            } else {
+                return text
+            }
+        }
+    });
 }
 
 
