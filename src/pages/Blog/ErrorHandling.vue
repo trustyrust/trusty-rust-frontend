@@ -103,7 +103,7 @@ your age is: 40`"
           <text-code>std::error::Error</text-code> trait. Simply add <text-code>anyhow</text-code> into your
           <text-code>Cargo.toml</text-code> dependencies:
         </div>
-        <highlight-js language="ini" :code="codeEx4" />
+        <highlight-js language="toml" :code="codeEx4" />
         <div class="text-body1">Now the above example can be reduced into the following:</div>
         <highlight-js language="rust" :code="codeEx5" />
         <div class="text-subtitle2">

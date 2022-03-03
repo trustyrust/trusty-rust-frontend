@@ -18,7 +18,7 @@
         <div class="text-body1">First thing you need to do is create a new rust project</div>
         <highlight-js language="shell" :code="`cargo init rust-socket-server`" />
         <div class="text-body1">Add in the dependencies into your <text-code>Cargo.toml</text-code></div>
-        <highlight-js language="ini" :code="codeEx1" />
+        <highlight-js language="toml" :code="codeEx1" />
         <q-separator class="q-my-lg" />
       </section>
       <section>

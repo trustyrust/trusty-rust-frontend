@@ -31,7 +31,7 @@
         <div class="text-caption q-pt-md">
           <text-code :background="false">Cargo.toml</text-code>
         </div>
-        <highlight-js language="ini" :code="codeEx2" />
+        <highlight-js language="toml" :code="codeEx2" />
         <q-separator class="q-my-lg" />
       </section>
       <section>

@@ -27,8 +27,8 @@ import "highlightjs-badge";
 // for each client)
 
 export default boot(async ({ app, store, router }) => {
-    hljs.registerLanguage('ini', ini);
-    hljs.registerLanguage('xml', xml);
+    hljs.registerLanguage('toml', ini);
+    hljs.registerLanguage('html', xml);
     hljs.registerLanguage('shell', shell);
     hljs.registerLanguage('plaintext', plaintext);
     hljs.registerLanguage('rust', rust);

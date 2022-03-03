@@ -175,7 +175,7 @@ format_string result from wasm: hello wasm test
           In this example we are going to demonstrate the second approach. In an <text-code>html</text-code> file add the following into
           your <text-code>body</text-code> tag
         </div>
-        <highlight-js language="xml" :code="codeEx3" />
+        <highlight-js language="html" :code="codeEx3" />
         <div class="text-body1">Now if you open the webpage and check your console you should see:</div>
         <highlight-js
           language="plaintext"
